@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Ava Labs Sandbox App
         </a>
       </header>
     </div>
