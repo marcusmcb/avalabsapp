@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Sparkline from 'react-sparkline-svg'
 import './dashboard.css'
 
 const Dashboard = () => {
@@ -34,16 +35,31 @@ const Dashboard = () => {
         <span>
           {coinData.map((coin, i) => (
             <p className='dashboard-element' key={i}>
-              <span>{coin.name} | </span>
-              <span>{coin.symbol.toUpperCase()} | </span>
-              <span>(sparkline) | </span>
+
+              <span>
+                {coin.name} ({coin.symbol.toUpperCase()}){' '}
+              </span>
+
+              <span>
+                <Sparkline
+                  values={[...coin.sparkline_in_7d.price]}
+                  viewBoxHeight={30}
+                  width={50}
+                />
+              </span>
+
               <span>(24h volume) | </span>
-              <span>{coin.current_price} | </span>
-              {/* <span>{coin.price_change_24h.toFixed(2)} </span> */}
+
+              <span>{coin.current_price.toFixed(2)} | </span>
+              
               {coin.price_change_24h > 0 ? (
-                <span style={{color: "green"}}>{coin.price_change_percentage_24h.toFixed(2)}%</span>
+                <span style={{ color: 'green' }}>
+                  {coin.price_change_percentage_24h.toFixed(2)}%
+                </span>
               ) : (
-                <span style={{color: "red"}}>{coin.price_change_percentage_24h.toFixed(2)}%</span>
+                <span style={{ color: 'red' }}>
+                  {coin.price_change_percentage_24h.toFixed(2)}%
+                </span>
               )}
             </p>
           ))}
