@@ -1,0 +1,7 @@
+.dashboard-element {
+    background-color: darkslategrey;
+    color: white;
+    margin: 0px;
+    border-bottom: 2px solid black;
+    padding: 10px;
+}
