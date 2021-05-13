@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Sparkline from 'react-sparkline-svg'
 import './dashboard.css'
 
@@ -34,52 +34,83 @@ const Dashboard = () => {
       ) : (
         <div>
           {coinData.map((coin, i) => (
-            <div className='dashboard-row' key={i}>
-              <span className='coin-image'>
-                {coin.image === "missing_large.png" ? (<p></p>) : (<img src={coin.image} alt={coin.name} width='20' height='20' />)}
-                
-              </span>
+            <Fragment>
+              <div className='dashboard-row' key={i}>
+                <span className='coin-image'>
+                  {coin.image === 'missing_large.png' ? (
+                    <p></p>
+                  ) : (
+                    <img
+                      src={coin.image}
+                      alt={coin.name}
+                      width='20'
+                      height='20'
+                    />
+                  )}
+                </span>
 
-              <span className='coin-name'>
-                <ul>
-                  <li className="coin-conversion-label">{coin.symbol.toUpperCase()}-USD</li>
-                  <li className='coin-name-label'>{coin.name}</li>
-                </ul>
-              </span>
+                <span className='coin-name'>
+                  <ul>
+                    <li className='coin-conversion-label'>
+                      {coin.symbol.toUpperCase()}-USD
+                    </li>
+                    <li className='coin-name-label'>{coin.name}</li>
+                  </ul>
+                </span>
 
-              <span className='sparkline'>
+                <span className='sparkline'>
+                  <Sparkline
+                    values={[...coin.sparkline_in_7d.price]}
+                    height={50}
+                    width={50}
+                    stroke={coin.price_change_24h > 0 ? '#4DAB50' : '#E35406'}
+                  />
+                </span>
+
+                <span>
+                  <ul>
+                    <li className='coin-high-low'>
+                      ${coin.price_change_24h.toFixed(2)}
+                    </li>
+                    <li className='coin-high-low-label'>24h price +/-</li>
+                  </ul>
+                </span>
+
+                <span>
+                  <ul>
+                    <li className='coin-current-price'>
+                      ${coin.current_price.toFixed(2)}
+                    </li>
+                    <li>
+                      {coin.price_change_24h > 0 ? (
+                        <span
+                          className='coin-price-change'
+                          style={{ color: '#4DAB50' }}
+                        >
+                          {coin.price_change_percentage_24h.toFixed(2)}%
+                        </span>
+                      ) : (
+                        <span
+                          className='coin-price-change'
+                          style={{ color: '#E35406' }}
+                        >
+                          {coin.price_change_percentage_24h.toFixed(2)}%
+                        </span>
+                      )}
+                    </li>
+                  </ul>
+                </span>
+              </div>
+
+              <div className='full-sparkline'>
                 <Sparkline
                   values={[...coin.sparkline_in_7d.price]}
-                  viewBoxHeight={30}
-                  width={50}
+                  viewBoxHeight={400}
+                  width={150}
                   stroke={coin.price_change_24h > 0 ? '#4DAB50' : '#E35406'}
-                />
-              </span>
-
-              <span>
-                <ul>
-                  <li className="coin-high-low">${coin.price_change_24h.toFixed(2)}</li>
-                  <li className="coin-high-low-label">24h price +/-</li>
-                </ul>
-              </span>
-
-              <span>
-                <ul>
-                  <li className="coin-current-price">${coin.current_price.toFixed(2)}</li>
-                  <li>
-                    {coin.price_change_24h > 0 ? (
-                      <span className="coin-price-change" style={{ color: '#4DAB50' }}>
-                        {coin.price_change_percentage_24h.toFixed(2)}%
-                      </span>
-                    ) : (
-                      <span className="coin-price-change" style={{ color: '#E35406' }}>
-                        {coin.price_change_percentage_24h.toFixed(2)}%
-                      </span>
-                    )}
-                  </li>
-                </ul>
-              </span>
-            </div>
+                />                
+              </div>
+            </Fragment>
           ))}
         </div>
       )}

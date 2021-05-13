@@ -5,7 +5,13 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   height: 50px;
+  overflow: hidden;
+  transition: height 0.5s;
 }
+
+/* .dashboard-row:hover {
+  height: 150px;
+} */
 
 ul {
   list-style-type: none;
@@ -19,6 +25,23 @@ ul {
 
 .sparkline {
   margin-top: 15px;
+}
+
+.full-sparkline {
+  display: none;
+}
+
+.dashboard-row:hover {
+    border-bottom: none;
+}
+
+.dashboard-row:hover + .full-sparkline {
+  display: block;
+  height: 50px;
+  background-color: #1f2e39;
+  color: white;
+  border-bottom: 2px solid black;
+  padding-top: 10px;
 }
 
 .coin-name-label,
