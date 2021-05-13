@@ -5,4 +5,8 @@ Crypto Dashboard
 - data via CoinGecko API
 - mobile-first design
 
+Link to the app:
+
+https://master.d1tg6m2kylxk3w.amplifyapp.com/
+
 Marcus McBride, 2021
