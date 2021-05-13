@@ -42,7 +42,7 @@ const Dashboard = () => {
 
               <span className='coin-name'>
                 <ul>
-                  <li>{coin.symbol.toUpperCase()}-USD</li>
+                  <li className="coin-conversion-label">{coin.symbol.toUpperCase()}-USD</li>
                   <li className='coin-name-label'>{coin.name}</li>
                 </ul>
               </span>
@@ -58,14 +58,14 @@ const Dashboard = () => {
 
               <span>
                 <ul>
-                  <li>{coin.low_24h.toFixed(2)} / {coin.high_24h.toFixed(2)}</li>
-                  <li className="coin-high-low">24 Hour Low / High</li>
+                  <li className="coin-high-low">${coin.price_change_24h.toFixed(2)}</li>
+                  <li className="coin-high-low-label">24h price +/-</li>
                 </ul>
               </span>
 
               <span>
                 <ul>
-                  <li>${coin.current_price.toFixed(2)}</li>
+                  <li className="coin-current-price">${coin.current_price.toFixed(2)}</li>
                   <li>
                     {coin.price_change_24h > 0 ? (
                       <span className="coin-price-change" style={{ color: '#4DAB50' }}>
