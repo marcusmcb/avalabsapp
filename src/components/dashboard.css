@@ -9,10 +9,6 @@
   transition: height 0.5s;
 }
 
-/* .dashboard-row:hover {
-  height: 150px;
-} */
-
 ul {
   list-style-type: none;
   padding: 0;

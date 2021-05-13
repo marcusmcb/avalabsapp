@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import Sparkline from 'react-sparkline-svg'
+
 import './dashboard.css'
 
 const Dashboard = () => {
@@ -23,9 +24,7 @@ const Dashboard = () => {
       setCoinData(data)
       setBusy(false)
     })
-  }, [])
-
-  console.log(coinData[1])
+  }, [])  
 
   return (
     <div>
