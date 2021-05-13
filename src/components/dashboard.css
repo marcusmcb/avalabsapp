@@ -1,7 +1,31 @@
-.dashboard-element {
-    background-color: darkslategrey;
-    color: white;
-    margin: 0px;
-    border-bottom: 2px solid black;
-    padding: 10px;
+.dashboard-row {
+    background-color: #1F2E39;
+    color: white;    
+    border-bottom: 2px solid black;    
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr); 
+    height: 50px;   
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px;    
+}
+
+.coin-image {
+    padding-top: 15px;    
+}
+
+.sparkline {
+    margin-top: 15px
+}
+
+.coin-name-label,
+.coin-price-change,
+.coin-high-low {
+    font-size: 12px;
+    color: #A2A2A2
+}
+
+

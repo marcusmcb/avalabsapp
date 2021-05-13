@@ -7,8 +7,7 @@ function App() {
         <header className='App-header'>
           <p>Current CoinGecko Data</p>
         </header>
-        <Dashboard />
-      
+        <Dashboard />      
     </div>
   )
 }
