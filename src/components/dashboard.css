@@ -13,12 +13,11 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   height: 50px;
-  overflow: hidden;
-  transition: height 0.5s;
+  overflow: hidden;  
 }
 
 .dashboard-row:hover {
-  border-bottom: none;
+  border-bottom: none;  
 }
 
 .dashboard-row:hover + .full-sparkline {
