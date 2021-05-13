@@ -29,7 +29,7 @@ const Dashboard = () => {
   return (
     <div>
       {isBusy ? (
-        <p>Loading Coin Data...</p>
+        <p className="loading-data">Loading Coin Data...</p>
       ) : (
         <div>
           {coinData.map((coin, i) => (
@@ -78,7 +78,7 @@ const Dashboard = () => {
                 <span>
                   <ul>
                     <li className='coin-current-price'>
-                      ${coin.current_price.toFixed(2)}
+                      ${coin.current_price.toLocaleString()}
                     </li>
                     <li>
                       {coin.price_change_24h > 0 ? (
@@ -102,12 +102,38 @@ const Dashboard = () => {
               </div>
 
               <div className='full-sparkline'>
+                <li className='sparkline-data'>
+                  <p className='sparkline-data-label'>Market Cap Change:</p>
+                  {coin.market_cap_change_percentage_24h > 0 ? (
+                    <p
+                      className='sparkline-data-label'
+                      style={{ color: '#4DAB50' }}
+                    >
+                      {coin.market_cap_change_percentage_24h.toFixed(2)}%
+                    </p>
+                  ) : (
+                    <p
+                      className='sparkline-data-label'
+                      style={{ color: '#E35406' }}
+                    >
+                      {coin.market_cap_change_percentage_24h.toFixed(2)}%
+                    </p>
+                  )}
+                </li>
                 <Sparkline
+                  className='sparkline-center'
                   values={[...coin.sparkline_in_7d.price]}
-                  viewBoxHeight={400}
-                  width={150}
+                  height={100}
+                  width={100}
                   stroke={coin.price_change_24h > 0 ? '#4DAB50' : '#E35406'}
-                />                
+                />
+                <li className='sparkline-data'>
+                  <p>24h Low/High:</p>
+                  <p>
+                    ${coin.low_24h.toLocaleString()} / $
+                    {coin.high_24h.toLocaleString()}
+                  </p>
+                </li>
               </div>
             </Fragment>
           ))}
