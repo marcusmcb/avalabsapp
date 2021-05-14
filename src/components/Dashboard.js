@@ -16,12 +16,12 @@ const Dashboard = () => {
         let response = await req.json()
         return response
       } catch (err) {
-        console.log('COIN GECKO API ERROR: ', err)
+        console.log('COIN GECKO API ERROR: ', err)        
       }
     }
 
     getCoins().then((data) => {
-      setCoinData(data)
+      setCoinData(data)      
       setBusy(false)
     })
   }, [])  
@@ -101,7 +101,7 @@ const Dashboard = () => {
                 </span>
               </div>
 
-              <div className='full-sparkline'>
+              <div className='full-sparkline' key={i + Math.random()}>
                 <li className='sparkline-data'>
                   <p className='sparkline-data-label'>Market Cap Change:</p>
                   {coin.market_cap_change_percentage_24h > 0 ? (
@@ -120,8 +120,7 @@ const Dashboard = () => {
                     </p>
                   )}
                 </li>
-                <Sparkline
-                  className='sparkline-center'
+                <Sparkline                  
                   values={[...coin.sparkline_in_7d.price]}
                   height={100}
                   width={100}
