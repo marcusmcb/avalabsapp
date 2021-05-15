@@ -5,7 +5,7 @@ function App() {
   return (
     <div className='App'>      
         <header className='App-header'>
-          <p>Current CoinGecko Data</p>
+          <p>CoinSnapShot</p>
         </header>
         <Dashboard />      
     </div>
