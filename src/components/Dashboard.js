@@ -6,6 +6,7 @@ import './dashboard.css'
 const Dashboard = () => {
   const [coinData, setCoinData] = useState({})
   const [isBusy, setBusy] = useState(true)
+  const [didFail, setDidFail] = useState(false)
 
   useEffect(() => {
     const getCoins = async () => {
@@ -15,21 +16,30 @@ const Dashboard = () => {
         )
         let response = await req.json()
         return response
-      } catch (err) {
-        console.log('COIN GECKO API ERROR: ', err)        
+      } catch (err) {        
+        return err
       }
     }
 
     getCoins().then((data) => {
-      setCoinData(data)      
-      setBusy(false)
+      if (data.error) {
+        console.log(data.error)
+        setCoinData(data)
+        setDidFail(true)
+        setBusy(false)
+      } else {
+        setCoinData(data)
+        setBusy(false)
+      }
     })
-  }, [])  
+  }, [])
 
   return (
     <div>
       {isBusy ? (
-        <p className="loading-data">Loading Coin Data...</p>
+        <p className='loading-data'>Loading Coin Data...</p>
+      ) : !isBusy && didFail ? (
+        <p className='loading-data'>Error: {coinData.error}</p>
       ) : (
         <div>
           {coinData.map((coin, i) => (
@@ -120,7 +130,7 @@ const Dashboard = () => {
                     </p>
                   )}
                 </li>
-                <Sparkline                  
+                <Sparkline
                   values={[...coin.sparkline_in_7d.price]}
                   height={100}
                   width={100}
