@@ -9,25 +9,28 @@
 .dashboard-row {
   background-color: #1f2e39;
   color: white;
-  border-bottom: 2px solid black;
+  border-top: 2px solid black;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  height: 50px;
-  overflow: hidden;  
+  max-height: 50px;  
 }
 
-.dashboard-row:hover {
-  border-bottom: none;  
-}
-
-.dashboard-row:hover + .full-sparkline {
-  height: 100px;
+.dashboard-row:hover + .full-sparkline {  
   background-color: #1f2e39;
-  color: white;
-  border-bottom: 2px solid black;
+  color: white;  
   padding-top: 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  transition: display 2s;    
+}
+
+.full-sparkline:hover {  
+  background-color: #1f2e39;
+  color: white;  
+  padding-top: 10px;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  
 }
 
 ul {
@@ -58,7 +61,7 @@ ul,
 }
 
 .sparkline {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .sparkline-data {
@@ -66,7 +69,7 @@ ul,
 }
 
 .full-sparkline {
-  display: none;
+  display: none;  
 }
 
 svg {
