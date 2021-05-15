@@ -13,7 +13,7 @@
   border-top: 2px solid black;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  max-height: 50px;  
+  max-height: 50px;    
 }
 
 .dashboard-row:hover + .full-sparkline {  
@@ -23,6 +23,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   transition: display 2s;    
+}
+
+.dashboard-row::after:hover + .full-sparkline {
+  display: none;
 }
 
 .full-sparkline:hover {  

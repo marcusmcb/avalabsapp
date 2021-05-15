@@ -44,7 +44,7 @@ const Dashboard = () => {
         <div>
           {coinData.map((coin, i) => (
             <Fragment>
-              <div className='dashboard-row' key={i}>
+              <div className='dashboard-row' label={coin.name} key={i}>
                 <span className='coin-image'>
                   {coin.image === 'missing_large.png' ? (
                     <p></p>
