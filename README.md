@@ -1,4 +1,4 @@
-Crypto Dashboard
+CoinSnapShot
 
 - built with React/Node
 - hosted via Amplify/AWS
@@ -7,6 +7,6 @@ Crypto Dashboard
 
 Link to the app:
 
-https://master.d1tg6m2kylxk3w.amplifyapp.com/
+https://www.coinsnapshot.com/
 
 Marcus McBride, 2021
