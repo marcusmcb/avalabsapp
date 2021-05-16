@@ -5,6 +5,7 @@
   margin-top: 0;
   padding-top: 20px;
   font-family: 'Rubik', sans-serif;
+  animation: fadebackground 2s;
 }
 
 .dashboard-row {
@@ -121,4 +122,9 @@ svg {
 @-webkit-keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}
+}
+
+@keyframes fadebackground {
+  from {background-color: #282c34;}
+  to {background-color: #1f2e39;}
 }
