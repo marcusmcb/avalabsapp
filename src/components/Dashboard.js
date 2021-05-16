@@ -58,7 +58,7 @@ const Dashboard = () => {
                   )}
                 </span>
 
-                <span className='coin-name'>
+                <span className='coin-name fade-in-text'>
                   <ul>
                     <li className='coin-conversion-label'>
                       {coin.symbol.toUpperCase()}-USD
@@ -76,16 +76,16 @@ const Dashboard = () => {
                   />
                 </span>
 
-                <span>
+                <span className="fade-in-text">
                   <ul>
                     <li className='coin-high-low'>
                       ${coin.price_change_24h.toFixed(2)}
                     </li>
-                    <li className='coin-high-low-label'>24h price +/-</li>
+                    <li className='coin-high-low-label'>24h change</li>
                   </ul>
                 </span>
 
-                <span>
+                <span className="fade-in-text">
                   <ul>
                     <li className='coin-current-price'>
                       ${coin.current_price.toLocaleString()}
@@ -112,7 +112,7 @@ const Dashboard = () => {
               </div>
 
               <div className='full-sparkline' key={i + Math.random()}>
-                <li className='sparkline-data'>
+                <li className='sparkline-data fade-in-text'>
                   <p className='sparkline-data-label'>Market Cap Change:</p>
                   {coin.market_cap_change_percentage_24h > 0 ? (
                     <p
@@ -136,7 +136,7 @@ const Dashboard = () => {
                   width={100}
                   stroke={coin.price_change_24h > 0 ? '#4DAB50' : '#E35406'}
                 />
-                <li className='sparkline-data'>
+                <li className='sparkline-data fade-in-text'>
                   <p>24h Low/High:</p>
                   <p>
                     ${coin.low_24h.toLocaleString()} / $

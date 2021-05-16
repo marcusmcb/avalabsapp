@@ -13,20 +13,19 @@
   border-top: 2px solid black;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  max-height: 50px;    
+  max-height: 50px;      
 }
 
 .dashboard-row:hover + .full-sparkline {  
   background-color: #1f2e39;
   color: white;  
   padding-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  transition: display 2s;    
+  display: grid;  
+  grid-template-columns: repeat(3, 1fr);    
 }
 
 .dashboard-row::after:hover + .full-sparkline {
-  display: none;
+  display: none;  
 }
 
 .full-sparkline:hover {  
@@ -35,7 +34,7 @@
   padding-top: 10px;
   margin-top: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  
+  grid-template-columns: repeat(3, 1fr);      
 }
 
 ul {
@@ -55,7 +54,7 @@ ul,
 .coin-name-label,
 .coin-price-change,
 .coin-high-low-label {
-  font-size: 12px;
+  font-size: 14px;
   color: #a2a2a2;
   padding-top: 2px;
 }
@@ -78,17 +77,48 @@ svg {
 }
 
 @media screen and (max-width: 880px) {
-  .coin-name-label,
+  
   .coin-price-change,
-  .coin-high-low-label,
-  .sparkline-data,
-  .sparkline-data-label {
+  .coin-high-low-label
+   {
     font-size: 10px;
   }
 
-  .coin-high-low,
-  .coin-conversion-label,
-  .coin-current-price {
+  .coin-name-label {
     font-size: 11px;
   }
+
+  .coin-conversion-label {
+    font-size: 12px;
+  }
+
+  .coin-high-low,  
+  .coin-current-price,
+  .sparkline-data,
+  .sparkline-data-label {
+    font-size: 13px;
+  }  
+}
+
+.fade-in-text {  
+  animation: fadeIn linear .5s;
+  -webkit-animation: fadeIn linear .5s;
+  -moz-animation: fadeIn linear .5s;
+  -o-animation: fadeIn linear .5s;
+  -ms-animation: fadeIn linear .5s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
