@@ -76,7 +76,7 @@ const Dashboard = () => {
                   />
                 </span>
 
-                <span className="fade-in-text">
+                <span className="coin-change fade-in-text">
                   <ul>
                     <li className='coin-high-low'>
                       ${coin.price_change_24h.toFixed(2)}
@@ -85,7 +85,7 @@ const Dashboard = () => {
                   </ul>
                 </span>
 
-                <span className="fade-in-text">
+                <span className="coin-change fade-in-text">
                   <ul>
                     <li className='coin-current-price'>
                       ${coin.current_price.toLocaleString()}
