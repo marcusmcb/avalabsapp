@@ -13,8 +13,9 @@
   color: white;
   border-top: 2px solid black;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  max-height: 50px;      
+  grid-template-columns: 12vw 22vw 22vw 22vw 22vw;
+  /* grid-template-columns: repeat(5, 1fr); */
+  max-height: 75px;      
 }
 
 .dashboard-row:hover + .full-sparkline {  
@@ -49,14 +50,19 @@ ul,
 }
 
 .coin-image {
-  padding-top: 15px;
-  margin-right: 30%;    
+  padding-top: 15px;    
 }
 
 .coin-name,
 .coin-change,
 .coin-current-price {
-  text-align: left
+  text-align: left;      
+}
+
+.coin-conversion-label,
+.coin-high-low,
+.coin-current-price {
+  padding-top: 1vh;
 }
 
 .coin-name-label,
