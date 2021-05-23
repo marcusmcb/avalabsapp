@@ -3,7 +3,7 @@ CoinSnapShot
 - built with React/Node
 - hosted via Amplify/AWS
 - data via CoinGecko API
-- mobile-first design
+- mobile-first design (CSS only)
 
 Link to the app:
 
