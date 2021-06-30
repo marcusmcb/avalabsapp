@@ -55,13 +55,13 @@ const Dashboard = () => {
         <p className='loading-data'>Error: {coinData.error}</p>
       ) : (
         <div>
-          
+
           <form className='search-form'>
             <input
               type='search'
               name='search-form'
               id='search-form'
-              className='search-input'
+              
               placeholder='Search Tokens'
               value={q}
               onChange={(e) => setQ(e.target.value)}
