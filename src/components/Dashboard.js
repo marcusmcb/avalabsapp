@@ -15,9 +15,9 @@ const Dashboard = () => {
     const getCoins = async () => {
       try {
         let req = await fetch(
-          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=100&page=1&sparkline=true'
+          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=50&page=1&sparkline=true'
         )
-        let response = await req.json()
+        let response = await req.json()              
         return response
       } catch (err) {
         return err
@@ -32,11 +32,33 @@ const Dashboard = () => {
         setBusy(false)
       } else {
         setCoinData(data)
+        setTopTen(data)
         setBusy(false)
       }
     })
   }, [])
 
+  function setTopTen(data) {
+    let topTen = data.sort(function(a, b) {
+      return a.price_change_percentage_24h < b.price_change_percentage_24h ? 1 : -1
+    }).slice(0, 10)  
+    console.log("TOP TEN", topTen)  
+  }
+
+  // logic to find token w/biggest 24 hour price gain
+  let highestValue = 0;
+  let highestValueData;
+  for (let i = 0; i < coinData.length; i++) {
+    let value = Number(coinData[i]['price_change_percentage_24h'])
+    if (value > highestValue) {
+      highestValue = value
+      highestValueData = coinData[i]
+    }
+  }
+  console.log(`Highest Value: ${highestValue}`)
+  console.log("Highest Value Data", highestValueData)  
+
+  // search form to filter results
   function search(coinData) {
     return coinData.filter((coin) => {
       return searchParam.some((newCoin) => {
@@ -57,12 +79,12 @@ const Dashboard = () => {
         <div>
 
           <form className='search-form'>
+            {/* <p>Biggest Gainer: {highestValueData.name} {highestValue.toFixed(2)}%</p> */}
             <input
               type='search'
               name='search-form'
-              id='search-form'
-              
-              placeholder='Search Tokens'
+              id='search-form'              
+              placeholder='Search Token Name/Symbol'
               value={q}
               onChange={(e) => setQ(e.target.value)}
             />
