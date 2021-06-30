@@ -55,6 +55,7 @@ const Dashboard = () => {
         <p className='loading-data'>Error: {coinData.error}</p>
       ) : (
         <div>
+          
           <form className='search-form'>
             <input
               type='search'
@@ -62,10 +63,10 @@ const Dashboard = () => {
               id='search-form'
               className='search-input'
               placeholder='Search Tokens'
-              value={q}             
+              value={q}
               onChange={(e) => setQ(e.target.value)}
-            />            
-                </form>   
+            />
+          </form>
 
           {search(coinData).map((coin, i) => (
             <Fragment>
