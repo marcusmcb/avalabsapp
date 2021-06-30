@@ -8,6 +8,11 @@
   animation: fadebackground 2s;
 }
 
+.search-form {
+  background-color: #1f2e39;
+  padding: 10px;
+}
+
 .dashboard-row {
   background-color: #1f2e39;
   color: white;

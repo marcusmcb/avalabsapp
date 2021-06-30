@@ -8,6 +8,9 @@ const Dashboard = () => {
   const [isBusy, setBusy] = useState(true)
   const [didFail, setDidFail] = useState(false)
 
+  const [q, setQ] = useState('')
+  const [searchParam] = useState(['name', 'symbol'])
+
   useEffect(() => {
     const getCoins = async () => {
       try {
@@ -16,7 +19,7 @@ const Dashboard = () => {
         )
         let response = await req.json()
         return response
-      } catch (err) {        
+      } catch (err) {
         return err
       }
     }
@@ -34,6 +37,16 @@ const Dashboard = () => {
     })
   }, [])
 
+  function search(coinData) {
+    return coinData.filter((coin) => {
+      return searchParam.some((newCoin) => {
+        return (
+          coin[newCoin].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+        )
+      })
+    })
+  }
+
   return (
     <div>
       {isBusy ? (
@@ -42,7 +55,19 @@ const Dashboard = () => {
         <p className='loading-data'>Error: {coinData.error}</p>
       ) : (
         <div>
-          {coinData.map((coin, i) => (
+          <form className='search-form'>
+            <input
+              type='search'
+              name='search-form'
+              id='search-form'
+              className='search-input'
+              placeholder='Search Tokens'
+              value={q}             
+              onChange={(e) => setQ(e.target.value)}
+            />            
+                </form>   
+
+          {search(coinData).map((coin, i) => (
             <Fragment>
               <div className='dashboard-row' label={coin.name} key={i}>
                 <span className='coin-image'>
@@ -76,7 +101,7 @@ const Dashboard = () => {
                   />
                 </span>
 
-                <span className="coin-change fade-in-text">
+                <span className='coin-change fade-in-text'>
                   <ul>
                     <li className='coin-high-low'>
                       ${coin.price_change_24h.toFixed(2)}
@@ -85,7 +110,7 @@ const Dashboard = () => {
                   </ul>
                 </span>
 
-                <span className="coin-change fade-in-text">
+                <span className='coin-change fade-in-text'>
                   <ul>
                     <li className='coin-current-price'>
                       ${coin.current_price.toLocaleString()}
