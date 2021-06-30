@@ -15,7 +15,7 @@ const Dashboard = () => {
     const getCoins = async () => {
       try {
         let req = await fetch(
-          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=50&page=1&sparkline=true'
+          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=99&page=1&sparkline=true'
         )
         let response = await req.json()              
         return response
