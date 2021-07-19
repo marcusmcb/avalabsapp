@@ -19,7 +19,7 @@
   color: white;
   border-top: 2px solid black;
   display: grid;
-  grid-template-columns: 12vw 22vw 22vw 22vw 22vw;
+  grid-template-columns: 10vw 22vw 22vw 22vw 22vw;
   /* grid-template-columns: repeat(5, 1fr); */
   max-height: 75px;      
 }
