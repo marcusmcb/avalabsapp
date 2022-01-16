@@ -79,7 +79,7 @@ const Dashboard = () => {
         <div>
 
           <form className='search-form'>
-            {/* <p>Biggest Gainer: {highestValueData.name} {highestValue.toFixed(2)}%</p> */}
+            {/* <p>Biggest Gainer: {highestValueData.name} {highestValue}%</p> */}
             <input
               type='search'
               name='search-form'
@@ -127,7 +127,7 @@ const Dashboard = () => {
                 <span className='coin-change fade-in-text'>
                   <ul>
                     <li className='coin-high-low'>
-                      ${coin.price_change_24h.toFixed(2)}
+                      ${coin.price_change_24h}
                     </li>
                     <li className='coin-high-low-label'>24h change</li>
                   </ul>
@@ -136,7 +136,7 @@ const Dashboard = () => {
                 <span className='coin-change fade-in-text'>
                   <ul>
                     <li className='coin-current-price'>
-                      ${coin.current_price.toLocaleString()}
+                      ${coin.current_price}
                     </li>
                     <li>
                       {coin.price_change_24h > 0 ? (
@@ -144,14 +144,14 @@ const Dashboard = () => {
                           className='coin-price-change'
                           style={{ color: '#4DAB50' }}
                         >
-                          {coin.price_change_percentage_24h.toFixed(2)}%
+                          {coin.price_change_percentage_24h}%
                         </span>
                       ) : (
                         <span
                           className='coin-price-change'
                           style={{ color: '#E35406' }}
                         >
-                          {coin.price_change_percentage_24h.toFixed(2)}%
+                          {coin.price_change_percentage_24h}%
                         </span>
                       )}
                     </li>
@@ -167,14 +167,14 @@ const Dashboard = () => {
                       className='sparkline-data-label'
                       style={{ color: '#4DAB50' }}
                     >
-                      {coin.market_cap_change_percentage_24h.toFixed(2)}%
+                      {coin.market_cap_change_percentage_24h}%
                     </p>
                   ) : (
                     <p
                       className='sparkline-data-label'
                       style={{ color: '#E35406' }}
                     >
-                      {coin.market_cap_change_percentage_24h.toFixed(2)}%
+                      {coin.market_cap_change_percentage_24h}%
                     </p>
                   )}
                 </li>
@@ -187,8 +187,8 @@ const Dashboard = () => {
                 <li className='sparkline-data fade-in-text'>
                   <p>24h Low/High:</p>
                   <p>
-                    ${coin.low_24h.toLocaleString()} / $
-                    {coin.high_24h.toLocaleString()}
+                    ${coin.low_24h} / $
+                    {coin.high_24h}
                   </p>
                 </li>
               </div>
