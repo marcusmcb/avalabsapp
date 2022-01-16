@@ -200,4 +200,10 @@ const Dashboard = () => {
   )
 }
 
+// FUTURE UX
+
+// top 5 gainers row at top
+// on tap/click the list scrolls to the corresponding token
+// widens out to show extended view
+
 export default Dashboard
