@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import axios from 'axios'
 import Sparkline from 'react-sparkline-svg'
 
 import './dashboard.css'
@@ -12,30 +13,34 @@ const Dashboard = () => {
   const [searchParam] = useState(['name', 'symbol'])
 
   useEffect(() => {
-    const getCoins = async () => {
-      try {
-        let req = await fetch(
-          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=99&page=1&sparkline=true'
-        )
-        let response = await req.json()
-        return response
-      } catch (err) {
-        return err
-      }
+
+    // helper method to remove null values from api response
+    const swapValue = (obj) => {
+      Object.keys(obj).forEach((key) => {
+        if (!obj[key]) {
+          obj[key] = ' n/a '
+        }
+      })
+      return obj
     }
 
-    // helper method to remove null values from API response
-    const swapValue = async (obj) => {
-      for (let i = 0; i < obj.length; i++) {        
-        for (let [key, value] of Object.entries(obj[i])) {          
-          if (value === null) {
-            console.log(`${key} has a ${value} value.`)
-            value = 'NA'
-            console.log(`${key} now has a ${value} value.`)
-          }          
-        }
-      }      
-    }    
+    const getCoins = async () => {
+      let tempCoinArray = []
+      await axios
+        .get(
+          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=99&page=1&sparkline=true'
+        )
+        .then((response) => {
+          for (let i = 0; i < response.data.length; i++) {
+            let newCoin = swapValue(response.data[i])
+            tempCoinArray.push(newCoin)
+          }
+        })
+        .catch((error) => {
+          console.log('ERROR: ', error)
+        })
+      return tempCoinArray
+    }
 
     getCoins().then((data) => {
       if (data.error) {
@@ -44,8 +49,7 @@ const Dashboard = () => {
         setDidFail(true)
         setBusy(false)
       } else {
-        swapValue(data)
-        setCoinData(data)                        
+        setCoinData(data)
         setTopTen(data)
         setBusy(false)
       }
