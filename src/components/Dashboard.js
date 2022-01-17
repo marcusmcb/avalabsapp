@@ -25,23 +25,25 @@ const Dashboard = () => {
     }
 
     // helper method to remove null values from API response
-    const swapValue = (obj) => {
-      Object.keys(obj).forEach(key => {
-         if(!obj[key]){
+    const swapValue = async (obj) => {      
+      await Object.keys(obj).forEach(key => {
+        console.log(key)
+         if(!obj[key]){           
             obj[key] = 'NA';
+            console.log("***** HERE *****")
          }
-      });
+      });      
       return obj
    };
 
-    getCoins().then((data) => {
+    getCoins().then((data) => {            
       if (data.error) {
         console.log(data.error)
         setCoinData(data)
         setDidFail(true)
         setBusy(false)
-      } else {
-        swapValue(data)
+      } else {              
+        swapValue(data)        
         setCoinData(data)
         setTopTen(data)
         setBusy(false)
@@ -137,7 +139,7 @@ const Dashboard = () => {
 
                 <span className='coin-change fade-in-text'>
                   <ul>
-                    <li className='coin-high-low'>
+                    <li className='coin-high-low'>                      
                       ${coin.price_change_24h}
                     </li>
                     <li className='coin-high-low-label'>24h change</li>
