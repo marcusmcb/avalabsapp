@@ -28,7 +28,7 @@ const Dashboard = () => {
       let tempCoinArray = []
       await axios
         .get(
-          'https://api.coingecko.com/api/v3/coins/market?vs_currency=USD&order=volume_desc&per_page=99&page=1&sparkline=true'
+          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=99&page=1&sparkline=true'
         )
         .then((response) => {
           for (let i = 0; i < response.data.length; i++) {
