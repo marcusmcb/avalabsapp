@@ -24,6 +24,16 @@ const Dashboard = () => {
       }
     }
 
+    // helper method to remove null values from API response
+    const swapValue = (obj) => {
+      Object.keys(obj).forEach(key => {
+         if(!obj[key]){
+            obj[key] = 'NA';
+         }
+      });
+      return obj
+   };
+
     getCoins().then((data) => {
       if (data.error) {
         console.log(data.error)
@@ -31,6 +41,7 @@ const Dashboard = () => {
         setDidFail(true)
         setBusy(false)
       } else {
+        swapValue(data)
         setCoinData(data)
         setTopTen(data)
         setBusy(false)
@@ -91,8 +102,8 @@ const Dashboard = () => {
           </form>
 
           {search(coinData).map((coin, i) => (
-            <Fragment>
-              <div className='dashboard-row' label={coin.name} key={i}>
+            <Fragment key={i}>
+              <div className='dashboard-row' label={coin.name}>
                 <span className='coin-image'>
                   {coin.image === 'missing_large.png' ? (
                     <p></p>
