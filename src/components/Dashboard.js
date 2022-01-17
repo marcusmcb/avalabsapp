@@ -43,8 +43,7 @@ const Dashboard = () => {
       return tempCoinArray
     }
 
-    getCoins().then((data) => { 
-      // console.log("DATA: ", data[0].error)     
+    getCoins().then((data) => {            
       if (data[0].error) {        
         setCoinData(data)
         setDidFail(true)
