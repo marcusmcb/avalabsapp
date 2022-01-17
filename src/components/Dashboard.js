@@ -44,7 +44,7 @@ const Dashboard = () => {
     }
 
     getCoins().then((data) => { 
-      console.log("DATA: ", data[0].error)     
+      // console.log("DATA: ", data[0].error)     
       if (data[0].error) {        
         setCoinData(data)
         setDidFail(true)
