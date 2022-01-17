@@ -17,7 +17,7 @@ const Dashboard = () => {
         let req = await fetch(
           'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=99&page=1&sparkline=true'
         )
-        let response = await req.json()              
+        let response = await req.json()
         return response
       } catch (err) {
         return err
@@ -25,25 +25,27 @@ const Dashboard = () => {
     }
 
     // helper method to remove null values from API response
-    const swapValue = async (obj) => {      
-      await Object.keys(obj).forEach(key => {
-        console.log(key)
-         if(!obj[key]){           
-            obj[key] = 'NA';   
-         }
-      });      
-      return obj
-   };
+    const swapValue = async (obj) => {
+      for (let i = 0; i < obj.length; i++) {        
+        for (let [key, value] of Object.entries(obj[i])) {          
+          if (value === null) {
+            console.log(`${key} has a ${value} value.`)
+            value = 'NA'
+            console.log(`${key} now has a ${value} value.`)
+          }          
+        }
+      }      
+    }    
 
-    getCoins().then((data) => {            
+    getCoins().then((data) => {
       if (data.error) {
         console.log(data.error)
         setCoinData(data)
         setDidFail(true)
         setBusy(false)
-      } else {              
-        swapValue(data)        
-        setCoinData(data)
+      } else {
+        swapValue(data)
+        setCoinData(data)                        
         setTopTen(data)
         setBusy(false)
       }
@@ -51,15 +53,19 @@ const Dashboard = () => {
   }, [])
 
   function setTopTen(data) {
-    let topTen = data.sort(function(a, b) {
-      return a.price_change_percentage_24h < b.price_change_percentage_24h ? 1 : -1
-    }).slice(0, 10)  
-    console.log("TOP TEN", topTen)  
+    let topTen = data
+      .sort(function (a, b) {
+        return a.price_change_percentage_24h < b.price_change_percentage_24h
+          ? 1
+          : -1
+      })
+      .slice(0, 10)
+    console.log('TOP TEN', topTen)
   }
 
   // logic to find token w/biggest 24 hour price gain
-  let highestValue = 0;
-  let highestValueData;
+  let highestValue = 0
+  let highestValueData
   for (let i = 0; i < coinData.length; i++) {
     let value = Number(coinData[i]['price_change_percentage_24h'])
     if (value > highestValue) {
@@ -68,7 +74,7 @@ const Dashboard = () => {
     }
   }
   console.log(`Highest Value: ${highestValue}`)
-  console.log("Highest Value Data", highestValueData)  
+  console.log('Highest Value Data', highestValueData)
 
   // search form to filter results
   function search(coinData) {
@@ -89,13 +95,12 @@ const Dashboard = () => {
         <p className='loading-data'>Error: {coinData.error}</p>
       ) : (
         <div>
-
           <form className='search-form'>
             {/* <p>Biggest Gainer: {highestValueData.name} {highestValue}%</p> */}
             <input
               type='search'
               name='search-form'
-              id='search-form'              
+              id='search-form'
               placeholder='Search Token Name/Symbol'
               value={q}
               onChange={(e) => setQ(e.target.value)}
@@ -138,9 +143,7 @@ const Dashboard = () => {
 
                 <span className='coin-change fade-in-text'>
                   <ul>
-                    <li className='coin-high-low'>                      
-                      ${coin.price_change_24h}
-                    </li>
+                    <li className='coin-high-low'>${coin.price_change_24h}</li>
                     <li className='coin-high-low-label'>24h change</li>
                   </ul>
                 </span>
@@ -199,8 +202,7 @@ const Dashboard = () => {
                 <li className='sparkline-data fade-in-text'>
                   <p>24h Low/High:</p>
                   <p>
-                    ${coin.low_24h} / $
-                    {coin.high_24h}
+                    ${coin.low_24h} / ${coin.high_24h}
                   </p>
                 </li>
               </div>
