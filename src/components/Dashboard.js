@@ -28,7 +28,7 @@ const Dashboard = () => {
       let tempCoinArray = []
       await axios
         .get(
-          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=volume_desc&per_page=99&page=1&sparkline=true'
+          'https://api.coingecko.com/api/v3/coins/market?vs_currency=USD&order=volume_desc&per_page=99&page=1&sparkline=true'
         )
         .then((response) => {
           for (let i = 0; i < response.data.length; i++) {
@@ -37,14 +37,15 @@ const Dashboard = () => {
           }
         })
         .catch((error) => {
-          console.log('ERROR: ', error)
+          console.log('ERROR: ', error.response.data) 
+          tempCoinArray.push(error.response.data)         
         })
       return tempCoinArray
     }
 
-    getCoins().then((data) => {
-      if (data.error) {
-        console.log(data.error)
+    getCoins().then((data) => { 
+      console.log("DATA: ", data[0].error)     
+      if (data[0].error) {        
         setCoinData(data)
         setDidFail(true)
         setBusy(false)
@@ -96,7 +97,7 @@ const Dashboard = () => {
       {isBusy ? (
         <p className='loading-data'>Loading Coin Data...</p>
       ) : !isBusy && didFail ? (
-        <p className='loading-data'>Error: {coinData.error}</p>
+        <p className='loading-data'>Hmmm... that didn't work. {coinData[0].error}</p>
       ) : (
         <div>
           <form className='search-form'>
