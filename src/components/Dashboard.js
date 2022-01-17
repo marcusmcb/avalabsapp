@@ -29,8 +29,7 @@ const Dashboard = () => {
       await Object.keys(obj).forEach(key => {
         console.log(key)
          if(!obj[key]){           
-            obj[key] = 'NA';
-            console.log("***** HERE *****")
+            obj[key] = 'NA';   
          }
       });      
       return obj
