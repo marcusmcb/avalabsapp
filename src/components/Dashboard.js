@@ -146,8 +146,8 @@ const Dashboard = () => {
                 </span>
 
                 <span className='coin-change fade-in-text'>
-                  <ul>
-                    <li className='coin-high-low'>${coin.price_change_24h}</li>
+                  <ul>                    
+                    <li className='coin-high-low'>${parseInt(coin.price_change_24h, 10).toFixed(2)}</li>
                     <li className='coin-high-low-label'>24h change</li>
                   </ul>
                 </span>
@@ -155,7 +155,7 @@ const Dashboard = () => {
                 <span className='coin-change fade-in-text'>
                   <ul>
                     <li className='coin-current-price'>
-                      ${coin.current_price}
+                      ${coin.current_price.toLocaleString()}
                     </li>
                     <li>
                       {coin.price_change_24h > 0 ? (
@@ -163,14 +163,14 @@ const Dashboard = () => {
                           className='coin-price-change'
                           style={{ color: '#4DAB50' }}
                         >
-                          {coin.price_change_percentage_24h}%
+                          {parseInt(coin.price_change_percentage_24h).toFixed(2)}%
                         </span>
                       ) : (
                         <span
                           className='coin-price-change'
                           style={{ color: '#E35406' }}
                         >
-                          {coin.price_change_percentage_24h}%
+                          {parseInt(coin.price_change_percentage_24h).toFixed(2)}%
                         </span>
                       )}
                     </li>
@@ -186,14 +186,14 @@ const Dashboard = () => {
                       className='sparkline-data-label'
                       style={{ color: '#4DAB50' }}
                     >
-                      {coin.market_cap_change_percentage_24h}%
+                      {parseInt(coin.market_cap_change_percentage_24h).toFixed(2)}%
                     </p>
                   ) : (
                     <p
                       className='sparkline-data-label'
                       style={{ color: '#E35406' }}
                     >
-                      {coin.market_cap_change_percentage_24h}%
+                      {parseInt(coin.market_cap_change_percentage_24h).toFixed(2)}%
                     </p>
                   )}
                 </li>
@@ -206,7 +206,7 @@ const Dashboard = () => {
                 <li className='sparkline-data fade-in-text'>
                   <p>24h Low/High:</p>
                   <p>
-                    ${coin.low_24h} / ${coin.high_24h}
+                    ${parseInt(coin.low_24h).toFixed(2)} / ${parseInt(coin.high_24h).toFixed(2)}
                   </p>
                 </li>
               </div>
@@ -223,5 +223,10 @@ const Dashboard = () => {
 // top 5 gainers row at top
 // on tap/click the list scrolls to the corresponding token
 // widens out to show extended view
+
+// DATA CLEANUP & RETURN
+
+// added helper method to sub out null values returned (WORKING)
+// added parseInt to values displayed, data returned as string in some cases (TEMP FIX)
 
 export default Dashboard
