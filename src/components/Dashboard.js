@@ -228,6 +228,6 @@ const Dashboard = () => {
 
 // added helper method to sub out null values returned (WORKING)
 // added parseFloat to values displayed, data returned as string in some cases (TEMP FIX)
-// add type-checking for returned num values
+// add type-checking for returned num values (logic in component return?)
 
 export default Dashboard
